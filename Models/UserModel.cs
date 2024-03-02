@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Game_review_project.Models
+namespace OrderManagementSystem.Models
 {
     public class User 
     {

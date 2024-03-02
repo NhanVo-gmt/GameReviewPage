@@ -1,4 +1,4 @@
-namespace Game_review_project;
+namespace OrderManagementSystem;
 
 public class WeatherForecast
 {

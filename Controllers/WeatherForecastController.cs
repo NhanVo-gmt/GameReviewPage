@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Game_review_project.Controllers;
+namespace OrderManagementSystem.Controllers;
 
 [ApiController]
 [Route("[controller]")]
