@@ -475,11 +475,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\CodeWeb\\Game-review-system\\Game-review-project\\Game-review-project.csproj",
+      "projectUniqueName": "D:\\CodeWeb\\Game-review-system\\OrderManagementSystem\\Game-review-project.csproj",
       "projectName": "Game-review-project",
-      "projectPath": "D:\\CodeWeb\\Game-review-system\\Game-review-project\\Game-review-project.csproj",
+      "projectPath": "D:\\CodeWeb\\Game-review-system\\OrderManagementSystem\\Game-review-project.csproj",
       "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-      "outputPath": "D:\\CodeWeb\\Game-review-system\\Game-review-project\\obj\\",
+      "outputPath": "D:\\CodeWeb\\Game-review-system\\OrderManagementSystem\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
