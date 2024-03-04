@@ -6,25 +6,25 @@ namespace OrderManagementSystem.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class NewsController : ControllerBase 
+    public class ProductsController : ControllerBase 
     {
-        private static List<Product> _news = new List<Product>{
-            new Product { Id = 1, Title = "Hollow Knight", Description = "hello..."},
-            new Product { Id = 1, Title = "Zelda: Breath of the Wild", Description = "hello..."},
-            new Product { Id = 1, Title = "Than Trung", Description = "hello..."}
+        private static List<Product> _products = new List<Product>{
+            new Product { Id = 1, Name = "Hollow Knight", Description = "hello..."},
+            new Product { Id = 1, Name = "Zelda: Breath of the Wild", Description = "hello..."},
+            new Product { Id = 1, Name = "Than Trung", Description = "hello..."}
         };
 
-        // GET: api/news
+        // GET: api/products
         [HttpGet]
-        public ActionResult<IEnumerable<Product>> GetAllNews() {
-            return _news;
+        public ActionResult<IEnumerable<Product>> GetAllProducts() {
+            return _products;
         }
 
-        // GET: api/news/1
+        // GET: api/products/1
         [HttpGet("{id}")]
-        public ActionResult<Product> GetNews(int id)
+        public ActionResult<Product> GetProduct(int id)
         {
-            var news = _news.FirstOrDefault(item => item.Id == id);
+            var news = _products.FirstOrDefault(item => item.Id == id);
             if (news == null)
             {
                 return NotFound();
@@ -33,12 +33,19 @@ namespace OrderManagementSystem.Controllers
             return news;
         }
 
-        // POST: api/news
+        // POST: api/products
         [HttpPost]
-        public ActionResult<Product> PostNews(Product news)
+        public ActionResult<Product> PostProduct(Product product)
         {
-            _news.Add(news);
-            return CreatedAtAction(nameof(GetNews), new {id = news.Id}, news);
+            if (product == null)
+            {
+                return BadRequest("Product is null.");
+            }
+
+            product.Id = _products.Count + 1;
+
+            _products.Add(product);
+            return CreatedAtAction(nameof(GetProduct), new {id = product.Id}, product);
         }
     }
 }
