@@ -24,13 +24,13 @@ namespace OrderManagementSystem.Controllers
         [HttpGet("{id}")]
         public ActionResult<Product> GetProduct(int id)
         {
-            var news = _products.FirstOrDefault(item => item.Id == id);
-            if (news == null)
+            var product = _products.FirstOrDefault(item => item.Id == id);
+            if (product == null)
             {
                 return NotFound();
             }
 
-            return news;
+            return product;
         }
 
         // POST: api/products
@@ -46,6 +46,42 @@ namespace OrderManagementSystem.Controllers
 
             _products.Add(product);
             return CreatedAtAction(nameof(GetProduct), new {id = product.Id}, product);
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult<Product> PutProduct(int id, Product updatedProduct)
+        {
+            if (id != updatedProduct.Id)
+            {
+                return BadRequest();
+            }
+
+            var existingProduct = _products.FirstOrDefault(p => p.Id == id);
+            if (existingProduct == null)
+            {
+                return NotFound();
+            }
+
+            existingProduct.Name = updatedProduct.Name;
+            existingProduct.Description = updatedProduct.Description;
+            existingProduct.Category = updatedProduct.Category;
+            existingProduct.Price = updatedProduct.Price;
+            
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public ActionResult<Product> DeleteProduct(int id)
+        {
+            var product = _products.FirstOrDefault(p => p.Id == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            _products.Remove(product);
+
+            return NoContent();
         }
     }
 }
