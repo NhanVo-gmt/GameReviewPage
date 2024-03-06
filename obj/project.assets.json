@@ -475,9 +475,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\CodeWeb\\Game-review-system\\OrderManagementSystem\\Game-review-project.csproj",
-      "projectName": "Game-review-project",
-      "projectPath": "D:\\CodeWeb\\Game-review-system\\OrderManagementSystem\\Game-review-project.csproj",
+      "projectUniqueName": "D:\\CodeWeb\\Game-review-system\\OrderManagementSystem\\OrderManagementSystem.csproj",
+      "projectName": "OrderManagementSystem",
+      "projectPath": "D:\\CodeWeb\\Game-review-system\\OrderManagementSystem\\OrderManagementSystem.csproj",
       "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
       "outputPath": "D:\\CodeWeb\\Game-review-system\\OrderManagementSystem\\obj\\",
       "projectStyle": "PackageReference",
