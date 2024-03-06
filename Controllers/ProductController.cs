@@ -6,21 +6,21 @@ namespace OrderManagementSystem.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductsController : ControllerBase 
+    public class ProductController : ControllerBase 
     {
         private static List<Product> _products = new List<Product>{
             new Product { Id = 1, Name = "Hollow Knight", Description = "hello..."},
-            new Product { Id = 1, Name = "Zelda: Breath of the Wild", Description = "hello..."},
-            new Product { Id = 1, Name = "Than Trung", Description = "hello..."}
+            new Product { Id = 2, Name = "Zelda: Breath of the Wild", Description = "hello..."},
+            new Product { Id = 3, Name = "Than Trung", Description = "hello..."}
         };
 
-        // GET: api/products
+        // GET: api/product
         [HttpGet]
         public ActionResult<IEnumerable<Product>> GetAllProducts() {
             return _products;
         }
 
-        // GET: api/products/1
+        // GET: api/producs/1
         [HttpGet("{id}")]
         public ActionResult<Product> GetProduct(int id)
         {
@@ -33,7 +33,7 @@ namespace OrderManagementSystem.Controllers
             return product;
         }
 
-        // POST: api/products
+        // POST: api/product
         [HttpPost]
         public ActionResult<Product> PostProduct(Product product)
         {
