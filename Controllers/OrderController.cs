@@ -38,5 +38,32 @@ namespace OrderManagementSystem.Controllers
 
             return Ok(order);
         }
+
+        [HttpPost]
+        public ActionResult<Order> PostOrder(Order order)
+        {
+            if (order == null)
+            {
+                return BadRequest("Order is null");
+            }
+
+            order.OrderID = _orders.Count + 1;
+            _orders.Add(order);
+            return CreatedAtAction(nameof(GetOrderFromId), new {id = order.OrderID}, order);
+        }
+
+        [HttpDelete]
+        public ActionResult<Order> DeleteOrder(int id)
+        {
+            var order = _orders.FirstOrDefault(item => item.OrderID == id);
+            if (order == null)
+            {
+                return BadRequest("Order not found");
+            }
+
+            _orders.Remove(order);
+
+            return NoContent();
+        }
     }
 }
