@@ -11,7 +11,7 @@ namespace OrderManagementSystem.Models
         public int OrderID { get; set; }
         public OrderStatus OrderStatus {get; set;}
         public DateTime Date { get; set; }
-        public ICollection<OrderDetail> OrderDetails { get; set;}
+        public ICollection<OrderDetail>? OrderDetails { get; set;}
     }
 
     public class OrderDetail
