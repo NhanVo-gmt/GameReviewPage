@@ -14,7 +14,7 @@ namespace OrderManagementSystem.Controllers
         };
 
         private static List<Order> _orders = new List<Order>{
-            new Order { OrderID = 1, OrderDetails = _orderDetails}
+            new Order { OrderID = 1, OrderStatus = OrderStatus.Pending, OrderDetails = _orderDetails}
         }; 
 
         [HttpGet]
