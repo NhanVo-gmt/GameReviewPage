@@ -10,7 +10,8 @@ namespace OrderManagementSystem.Models
     public class Order {
         public int OrderID { get; set; }
         public OrderStatus OrderStatus {get; set;}
-        public DateTime Date { get; set; }
+        public DateTime CreateAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
         public ICollection<OrderDetail>? OrderDetails { get; set;}
     }
 

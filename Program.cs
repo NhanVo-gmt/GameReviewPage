@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using OrderManagementSystem.Contexts;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -9,6 +12,8 @@ builder.Services.AddSwaggerGen();
 
 // Scan and find all mappers
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
+
+builder.Services.AddDbContext<OrderManagementContext>();
 
 var app = builder.Build();
 
