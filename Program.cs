@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using OrderManagementSystem.Contexts;
+using OrderManagementSystem.Utility.HelperClass;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 builder.Services.AddDbContext<OrderManagementContext>();
+builder.Services.Configure<SuperAdmin>(builder.Configuration.GetSection("SuperAdmin"));
 
 var app = builder.Build();
 
