@@ -14,5 +14,8 @@ namespace OrderManagementSystem.Models
         [Required]
         [EmailAddress]
         public string Email { get; set; } = string.Empty;
+
+        //Sensitive information
+        public int BankAccountNumber { get; set; }
     }
 }
