@@ -5,10 +5,10 @@ namespace OrderManagementSystem.Services
 {
     public interface IProductService
     {
-        ActionResult<IEnumerable<Product>> GetAllProducts();
-        ActionResult<Product> GetProductById(int id);
-        ActionResult<Product> PostProduct(Product product);
-        ActionResult<Product> PutProduct(int id, Product updatedProduct);
-        ActionResult<Product> DeleteProduct(int id);
+        Task<object> GetAllProducts();
+        Task<object> GetProductById(int id);
+        Task<object> PostProduct(Product product);
+        Task<object> PutProduct(int id, Product updatedProduct);
+        Task<object> DeleteProduct(int id);
     }
 }

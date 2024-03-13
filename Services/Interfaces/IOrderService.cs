@@ -8,7 +8,6 @@ namespace OrderManagementSystem.Services
         ActionResult<IEnumerable<Order>> GetAllOrders();
         ActionResult<Order> GetOrderById(int id);
         ActionResult<Order> PostOrder(Order Order);
-        ActionResult<Order> PutOrder(int id, Order updatedOrder);
         ActionResult<Order> DeleteOrder(int id);
     }
 }

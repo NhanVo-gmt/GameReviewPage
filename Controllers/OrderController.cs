@@ -1,11 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using OrderManagementSystem.Models;
+using OrderManagementSystem.Services;
 
 namespace OrderManagementSystem.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OrderController : ControllerBase 
+    public class OrderController : ControllerBase, IOrderService
     {
         private static List<OrderDetail> _orderDetails = new List<OrderDetail>{
             new OrderDetail { OrderDetailID = 1, OrderID = 1, ProductID = 1, Quantity = 2},
