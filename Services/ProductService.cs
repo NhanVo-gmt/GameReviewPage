@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using OrderManagementSystem.Contexts;
 using OrderManagementSystem.Models;
+using OrderManagementSystem.Utility;
 
 namespace OrderManagementSystem.Services
 {
@@ -10,54 +13,68 @@ namespace OrderManagementSystem.Services
             new Product { Id = 2, Name = "Zelda: Breath of the Wild", Description = "hello..."},
             new Product { Id = 3, Name = "Than Trung", Description = "hello..."}
         };
+
+        OrderManagementContext _context;
+
+        private ProductService(OrderManagementContext context)
+        {
+            _context = context;
+        }
         
-        public Task<object> GetAllProducts() {
-            return _products;
+        public async Task<object> GetAllProducts() 
+        {
+            var data = await _context.Products.ToListAsync();
+            return new SuccessResponse( new {data});
         }
 
-        public Task<object> GetProductById(int id)
+        public async Task<object> GetProductById(int id)
         {
-            return _products.FirstOrDefault(item => item.Id == id);
+            var data = await _context.Products.FirstOrDefaultAsync(item => item.Id == id);
+            return new SuccessResponse(new { data });
         }
 
-        public Task<object> PostProduct(Product product)
+        public async Task<object> PostProduct(Product product)
         {
-            if (product == null) return;
+            if (product == null) return ErrorCode.PRODUCT_NOT_FOUND;
 
             product.Id = _products.Count + 1;
 
-            _products.Add(product);
+            await _context.Products.AddAsync(product);
+            return new SuccessResponse( new { success = true}); //todo
         }
 
-        public Task<object> PutProduct(int id, Product updatedProduct)
+        public async Task<object> PutProduct(int id, Product updatedProduct)
         {
             if (id != updatedProduct.Id)
             {
-                return ;
+                return ErrorCode.ID_INVALID;
             }
 
-            var existingProduct = _products.FirstOrDefault(p => p.Id == id);
+            var existingProduct = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
             if (existingProduct == null)
             {
-                return ;
+                return ErrorCode.PRODUCT_NOT_FOUND;
             }
 
             existingProduct.Name = updatedProduct.Name;
             existingProduct.Description = updatedProduct.Description;
             existingProduct.Category = updatedProduct.Category;
             existingProduct.Price = updatedProduct.Price;
-        
+
+            return new SuccessResponse (new {updatedProduct});
         }
 
-        public Task<object> DeleteProduct(int id)
+        public async Task<object> DeleteProduct(int id)
         {
-            var product = _products.FirstOrDefault(p => p.Id == id);
+            var product = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
             if (product == null)
             {
-                return ;
+                return ErrorCode.PRODUCT_NOT_FOUND;
             }
 
-            _products.Remove(product);
+            _context.Products.Remove(product);
+
+            return new SuccessResponse( new {_products});
         }
     }
 }

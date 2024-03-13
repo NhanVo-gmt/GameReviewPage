@@ -2,87 +2,86 @@ using OrderManagementSystem.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OrderManagementSystem.Services;
+using OrderManagementSystem.Utility;
 
 namespace OrderManagementSystem.Controllers 
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductController : ControllerBase, IProductService
+    public class ProductController : ControllerBase
     {
-        private static List<Product> _products = new List<Product>{
-            new Product { Id = 1, Name = "Hollow Knight", Description = "hello..."},
-            new Product { Id = 2, Name = "Zelda: Breath of the Wild", Description = "hello..."},
-            new Product { Id = 3, Name = "Than Trung", Description = "hello..."}
-        };
+        private IProductService _productService;
 
         // GET: api/product
         [HttpGet]
-        public ActionResult<IEnumerable<Product>> GetAllProducts() {
-            return _products;
+        public async Task<IActionResult> GetAllProducts() {
+            try
+            {
+                var data = await _productService.GetAllProducts();
+                return Ok(data);
+            }
+            catch (System.Exception e)
+            {
+                throw e;
+            }
         }
 
         // GET: api/producs/1
         [HttpGet("{id}")]
-        public ActionResult<Product> GetProductById(int id)
+        public async Task<IActionResult> GetProductById(int id)
         {
-            var product = _products.FirstOrDefault(item => item.Id == id);
-            if (product == null)
+            try
             {
-                return NotFound();
+                var product = await _productService.GetProductById(id);
+                return Ok(product);
             }
-
-            return product;
+            catch (System.Exception e)
+            {
+                throw e;
+            }
         }
 
         // POST: api/product
         [HttpPost]
-        public ActionResult<Product> PostProduct(Product product)
+        public async Task<IActionResult> PostProduct(Product product)
         {
-            if (product == null)
+            try
             {
-                return BadRequest("Product is null.");
+                await _productService.PostProduct(product);
+                return CreatedAtAction(nameof(GetProductById), new {id = product.Id}, product);
             }
-
-            product.Id = _products.Count + 1;
-
-            _products.Add(product);
-            return CreatedAtAction(nameof(GetProductById), new {id = product.Id}, product);
+            catch (System.Exception e)
+            {
+                throw e;
+            }
         }
 
         [HttpPut("{id}")]
-        public ActionResult<Product> PutProduct(int id, Product updatedProduct)
+        public async Task<IActionResult> PutProduct(int id, Product updatedProduct)
         {
-            if (id != updatedProduct.Id)
+            try
             {
-                return BadRequest();
+                var data = await _productService.PutProduct(id, updatedProduct);
+                return Ok(data);
             }
-
-            var existingProduct = _products.FirstOrDefault(p => p.Id == id);
-            if (existingProduct == null)
+            catch (System.Exception e)
             {
-                return NotFound();
+                throw e;
             }
-
-            existingProduct.Name = updatedProduct.Name;
-            existingProduct.Description = updatedProduct.Description;
-            existingProduct.Category = updatedProduct.Category;
-            existingProduct.Price = updatedProduct.Price;
-            
-            return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public ActionResult<Product> DeleteProduct(int id)
+        public async Task<IActionResult> DeleteProduct(int id)
         {
-            var product = _products.FirstOrDefault(p => p.Id == id);
-            if (product == null)
+            try
             {
-                return NotFound();
+                var data = await _productService.DeleteProduct(id);
+                return Ok(data);
             }
-
-            _products.Remove(product);
-
-            return NoContent();
+            catch (System.Exception e)
+            {
+                throw e;
+            }
         }
     }
 }
