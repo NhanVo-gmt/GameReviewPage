@@ -1,12 +1,13 @@
 using OrderManagementSystem.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using OrderManagementSystem.Services;
 
 namespace OrderManagementSystem.Controllers 
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductController : ControllerBase 
+    public class ProductController : ControllerBase, IProductService
     {
         private static List<Product> _products = new List<Product>{
             new Product { Id = 1, Name = "Hollow Knight", Description = "hello..."},
@@ -22,7 +23,7 @@ namespace OrderManagementSystem.Controllers
 
         // GET: api/producs/1
         [HttpGet("{id}")]
-        public ActionResult<Product> GetProduct(int id)
+        public ActionResult<Product> GetProductById(int id)
         {
             var product = _products.FirstOrDefault(item => item.Id == id);
             if (product == null)
@@ -45,7 +46,7 @@ namespace OrderManagementSystem.Controllers
             product.Id = _products.Count + 1;
 
             _products.Add(product);
-            return CreatedAtAction(nameof(GetProduct), new {id = product.Id}, product);
+            return CreatedAtAction(nameof(GetProductById), new {id = product.Id}, product);
         }
 
         [HttpPut("{id}")]

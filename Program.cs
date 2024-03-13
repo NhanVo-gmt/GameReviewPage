@@ -14,7 +14,7 @@ builder.Services.AddSwaggerGen();
 // Scan and find all mappers
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
-builder.Services.AddDbContext<OrderManagementContext>();
+builder.Services.AddDbContext<OrderManagementContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("mssql")));
 builder.Services.Configure<SuperAdmin>(builder.Configuration.GetSection("SuperAdmin"));
 
 var app = builder.Build();

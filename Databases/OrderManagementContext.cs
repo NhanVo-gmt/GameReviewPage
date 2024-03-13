@@ -16,7 +16,6 @@ namespace OrderManagementSystem.Contexts
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=OrderDB;Trusted_Connection=True;");
         }
     }
 }

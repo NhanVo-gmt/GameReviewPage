@@ -28,7 +28,7 @@ namespace OrderManagementSystem.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Order> GetOrderFromId(int id)
+        public ActionResult<Order> GetOrderById(int id)
         {
             var order = _orders.FirstOrDefault(item => item.OrderID == id);
             if (order == null)
@@ -49,7 +49,7 @@ namespace OrderManagementSystem.Controllers
 
             order.OrderID = _orders.Count + 1;
             _orders.Add(order);
-            return CreatedAtAction(nameof(GetOrderFromId), new {id = order.OrderID}, order);
+            return CreatedAtAction(nameof(GetOrderById), new {id = order.OrderID}, order);
         }
 
         [HttpDelete]
