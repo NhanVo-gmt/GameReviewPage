@@ -5,9 +5,9 @@ namespace OrderManagementSystem.Services
 {
     public interface IOrderService
     {
-        ActionResult<IEnumerable<Order>> GetAllOrders();
-        ActionResult<Order> GetOrderById(int id);
-        ActionResult<Order> PostOrder(Order Order);
-        ActionResult<Order> DeleteOrder(int id);
+        Task<object> GetAllOrders();
+        Task<object> GetOrderById(int id);
+        Task<object> PostOrder(Order order);
+        Task<object> DeleteOrder(int id);
     }
 }

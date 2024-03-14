@@ -4,6 +4,7 @@ namespace OrderManagementSystem.Utility
     {
         public static string USER_NOT_FOUND = "USER_NOT_FOUND";
         public static string PRODUCT_NOT_FOUND = "PRODUCT_NOT_FOUND";
+        public static string ORDER_NOT_FOUND = "ORDER_NOT_FOUND";
         public static string ID_INVALID = "ID_INVALID"; 
     }
 }

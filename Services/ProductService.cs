@@ -37,9 +37,11 @@ namespace OrderManagementSystem.Services
         {
             if (product == null) return ErrorCode.PRODUCT_NOT_FOUND;
 
-            product.Id = _products.Count + 1;
+            product.Id = _context.Products.Count() + 1;
 
             await _context.Products.AddAsync(product);
+            await _context.SaveChangesAsync();
+            
             return new SuccessResponse( new { success = true}); //todo
         }
 
@@ -61,6 +63,8 @@ namespace OrderManagementSystem.Services
             existingProduct.Category = updatedProduct.Category;
             existingProduct.Price = updatedProduct.Price;
 
+            await _context.SaveChangesAsync();
+
             return new SuccessResponse (new {updatedProduct});
         }
 
@@ -73,6 +77,7 @@ namespace OrderManagementSystem.Services
             }
 
             _context.Products.Remove(product);
+            await _context.SaveChangesAsync();
 
             return new SuccessResponse( new {_products});
         }
