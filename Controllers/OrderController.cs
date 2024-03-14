@@ -6,65 +6,73 @@ namespace OrderManagementSystem.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OrderController : ControllerBase, IOrderService
+    public class OrderController : ControllerBase
     {
-        private static List<OrderDetail> _orderDetails = new List<OrderDetail>{
-            new OrderDetail { OrderDetailID = 1, OrderID = 1, ProductID = 1, Quantity = 2},
-            new OrderDetail { OrderDetailID = 1, OrderID = 2, ProductID = 2, Quantity = 2},
-            new OrderDetail { OrderDetailID = 1, OrderID = 3, ProductID = 3, Quantity = 1},
-        };
+        private IOrderService _orderService;
 
-        private static List<Order> _orders = new List<Order>{
-            new Order { OrderID = 1, OrderStatus = OrderStatus.Pending, OrderDetails = _orderDetails}
-        }; 
-
-        [HttpGet]
-        public ActionResult<IEnumerable<Order>> GetAllOrders()
+        public OrderController (IOrderService orderService)
         {
-            if (_orders == null)
+            _orderService = orderService;
+        }
+        
+        [HttpGet]
+        public async Task<IActionResult> GetAllOrders()
+        {
+            try
             {
-                return NotFound();
+                var data = await _orderService.GetAllOrders();
+                return Ok(data);
             }
-            return Ok(_orders);
+            catch (System.Exception)
+            {
+                
+                throw;
+            }
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Order> GetOrderById(int id)
+        public async Task<IActionResult> GetOrderById(int id)
         {
-            var order = _orders.FirstOrDefault(item => item.OrderID == id);
-            if (order == null)
+            try
             {
-                return NotFound();
+                var data = await _orderService.GetOrderById(id);
+                return Ok(data);
             }
-
-            return Ok(order);
+            catch (System.Exception)
+            {
+                
+                throw;
+            }
         }
 
         [HttpPost]
-        public ActionResult<Order> PostOrder(Order order)
+        public async Task<IActionResult> PostOrder(Order order)
         {
-            if (order == null)
+            try
             {
-                return BadRequest("Order is null");
+                await _orderService.PostOrder(order);
+                return CreatedAtAction(nameof(GetOrderById), new {id = order.OrderID}, order);
             }
-
-            order.OrderID = _orders.Count + 1;
-            _orders.Add(order);
-            return CreatedAtAction(nameof(GetOrderById), new {id = order.OrderID}, order);
+            catch (System.Exception)
+            {
+                
+                throw;
+            }
         }
 
         [HttpDelete]
-        public ActionResult<Order> DeleteOrder(int id)
+        public async Task<IActionResult> DeleteOrder(int id)
         {
-            var order = _orders.FirstOrDefault(item => item.OrderID == id);
-            if (order == null)
+            try
             {
-                return BadRequest("Order not found");
+                var data = await _orderService.DeleteOrder(id);
+                return Ok(data);
             }
-
-            _orders.Remove(order);
-
-            return NoContent();
+            catch (System.Exception)
+            {
+                
+                throw;
+            }
         }
     }
 }

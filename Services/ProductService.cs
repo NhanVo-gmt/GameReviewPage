@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OrderManagementSystem.Contexts;
@@ -37,11 +38,10 @@ namespace OrderManagementSystem.Services
         {
             if (product == null) return ErrorCode.PRODUCT_NOT_FOUND;
 
-            product.Id = _context.Products.Count() + 1;
 
             await _context.Products.AddAsync(product);
             await _context.SaveChangesAsync();
-            
+
             return new SuccessResponse( new { success = true}); //todo
         }
 
@@ -79,7 +79,7 @@ namespace OrderManagementSystem.Services
             _context.Products.Remove(product);
             await _context.SaveChangesAsync();
 
-            return new SuccessResponse( new {_products});
+            return new SuccessResponse( new {_context.Products});
         }
     }
 }

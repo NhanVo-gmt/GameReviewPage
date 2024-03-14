@@ -7,6 +7,16 @@ namespace OrderManagementSystem.Services
 {
     public class OrderService : IOrderService
     {
+        private static List<OrderDetail> _orderDetails = new List<OrderDetail>{
+            new OrderDetail { OrderDetailID = 1, OrderID = 1, ProductID = 1, Quantity = 2},
+            new OrderDetail { OrderDetailID = 1, OrderID = 2, ProductID = 2, Quantity = 2},
+            new OrderDetail { OrderDetailID = 1, OrderID = 3, ProductID = 3, Quantity = 1},
+        };
+
+        private static List<Order> _orders = new List<Order>{
+            new Order { OrderID = 1, OrderStatus = OrderStatus.Pending, OrderDetails = _orderDetails}
+        };
+        
         private OrderManagementContext _context;
 
         public OrderService(OrderManagementContext context)
@@ -43,7 +53,7 @@ namespace OrderManagementSystem.Services
 
             Order lastOrder = await _context.Orders.LastAsync();
             order.OrderID = lastOrder.OrderID + 1;
-            
+
             await _context.Orders.AddAsync(order);
             await _context.SaveChangesAsync();
 
