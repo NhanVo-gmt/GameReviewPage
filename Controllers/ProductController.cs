@@ -12,6 +12,11 @@ namespace OrderManagementSystem.Controllers
     {
         private IProductService _productService;
 
+        public ProductController (IProductService productService)
+        {
+            _productService = productService;
+        }
+
         // GET: api/product
         [HttpGet]
         public async Task<IActionResult> GetAllProducts() {

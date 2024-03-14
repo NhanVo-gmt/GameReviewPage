@@ -16,7 +16,7 @@ namespace OrderManagementSystem.Services
 
         OrderManagementContext _context;
 
-        private ProductService(OrderManagementContext context)
+        public ProductService(OrderManagementContext context)
         {
             _context = context;
         }
