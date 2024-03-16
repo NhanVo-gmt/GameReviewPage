@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using OrderManagementSystem.Contexts;
+using OrderManagementSystem.Data;
 
 #nullable disable
 
 namespace OrderManagementSystem.Migrations
 {
-    [DbContext(typeof(OrderManagementContext))]
+    [DbContext(typeof(OrderManagementDbContext))]
     [Migration("20240313130336_newdata")]
     partial class newdata
     {

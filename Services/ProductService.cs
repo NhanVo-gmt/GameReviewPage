@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using OrderManagementSystem.Contexts;
+using OrderManagementSystem.Data;
 using OrderManagementSystem.Models;
 using OrderManagementSystem.Utility;
 
@@ -15,9 +15,9 @@ namespace OrderManagementSystem.Services
             new Product { Id = 3, Name = "Than Trung", Description = "hello..."}
         };
 
-        OrderManagementContext _context;
+        OrderManagementDbContext _context;
 
-        public ProductService(OrderManagementContext context)
+        public ProductService(OrderManagementDbContext context)
         {
             _context = context;
         }

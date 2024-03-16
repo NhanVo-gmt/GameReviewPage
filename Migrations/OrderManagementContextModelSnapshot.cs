@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using OrderManagementSystem.Contexts;
+using OrderManagementSystem.Data;
 
 #nullable disable
 
 namespace OrderManagementSystem.Migrations
 {
-    [DbContext(typeof(OrderManagementContext))]
+    [DbContext(typeof(OrderManagementDbContext))]
     partial class OrderManagementContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using OrderManagementSystem.Contexts;
+using OrderManagementSystem.Data;
 using OrderManagementSystem.Models;
 using OrderManagementSystem.Utility;
 
@@ -17,9 +17,9 @@ namespace OrderManagementSystem.Services
             new Order { OrderID = 1, OrderStatus = OrderStatus.Pending, OrderDetails = _orderDetails}
         };
         
-        private OrderManagementContext _context;
+        private OrderManagementDbContext _context;
 
-        public OrderService(OrderManagementContext context)
+        public OrderService(OrderManagementDbContext context)
         {
             _context = context;
         }

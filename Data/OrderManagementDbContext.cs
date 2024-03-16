@@ -1,14 +1,14 @@
 using Microsoft.EntityFrameworkCore;
 using OrderManagementSystem.Models;
 
-namespace OrderManagementSystem.Contexts 
+namespace OrderManagementSystem.Data 
 {
-    public class OrderManagementContext : DbContext
+    public class OrderManagementDbContext : DbContext
     {
         public DbSet<Order> Orders { get; set; }
         public DbSet<Product> Products {get; set;}
 
-        public OrderManagementContext (DbContextOptions options) : base(options)
+        public OrderManagementDbContext (DbContextOptions options) : base(options)
         {
 
         }

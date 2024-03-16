@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using OrderManagementSystem.Contexts;
+using OrderManagementSystem.Data;
 using OrderManagementSystem.Services;
 using OrderManagementSystem.Utility.HelperClass;
 
@@ -17,7 +17,7 @@ builder.Services.AddScoped<IProductService, ProductService>();
 // Scan and find all mappers
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
-builder.Services.AddDbContext<OrderManagementContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("mssql")));
+builder.Services.AddDbContext<OrderManagementDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("mssql")));
 builder.Services.Configure<SuperAdmin>(builder.Configuration.GetSection("SuperAdmin"));
 
 var app = builder.Build();
