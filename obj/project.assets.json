@@ -8482,11 +8482,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\CodeWeb\\Project\\OrderManagementSystem\\OrderManagementSystem.csproj",
+      "projectUniqueName": "d:\\CodeWeb\\Project\\OrderManagementSystem\\OrderManagementSystem.csproj",
       "projectName": "OrderManagementSystem",
-      "projectPath": "D:\\CodeWeb\\Project\\OrderManagementSystem\\OrderManagementSystem.csproj",
+      "projectPath": "d:\\CodeWeb\\Project\\OrderManagementSystem\\OrderManagementSystem.csproj",
       "packagesPath": "C:\\Users\\Dell\\.nuget\\packages\\",
-      "outputPath": "D:\\CodeWeb\\Project\\OrderManagementSystem\\obj\\",
+      "outputPath": "d:\\CodeWeb\\Project\\OrderManagementSystem\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
